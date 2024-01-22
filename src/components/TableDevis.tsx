@@ -59,13 +59,13 @@ export const TableDevis = () => {
                   <button onClick={handleWriteText}>O</button>
                 </th>
                 <th className="border-y border-gray-100 bg-gray-50/50 p-2">
-                  Hourly Rate
+                  Quantite
                 </th>
                 <th className="border-y border-gray-100 bg-gray-50/50 p-2">
-                  Attendees
+                  Prix
                 </th>
                 <th className="border-y border-gray-100 bg-gray-50/50 p-2">
-                  Total Cost
+                  Totale
                 </th>
                 <th className="border-y border-gray-100 bg-gray-50/50 p-2">
                   Action

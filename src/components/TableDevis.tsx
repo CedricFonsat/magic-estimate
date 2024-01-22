@@ -8,7 +8,7 @@ export const TableDevis = () => {
   const [quantite, setQuantite] = useState("");
   const [prix, setPrix] = useState("");
   const [total, setTotal] = useState("");
-  const [title, setTitle] = useState("Job Title");
+  const [title, setTitle] = useState("Description");
   const [isWrite, setIsWrite] = useState(false);
 
   const devis = useSelector((state: TypeState) => state.devis);

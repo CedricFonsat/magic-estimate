@@ -53,7 +53,7 @@ export const TableDevis = () => {
                     disabled={!isWrite && true}
                     type="text"
                     onChange={(e) => setTitle(e.target.value)}
-                    className={`p-2 rounded ${isWrite && "border"} hourly-rate`}
+                    className={`p-2 rounded ${isWrite && "border"} hourly-rate bg-transparent`}
                     value={title}
                   />
                   <button onClick={handleWriteText}>O</button>

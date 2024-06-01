@@ -4,13 +4,22 @@ import autoTable from "jspdf-autotable";
 import logo from "../assets/logo.png";
 import { useSelector } from "react-redux";
 import { TypeState } from "../types/Interface";
+import { useDevisStore } from "../store/devisStore";
 
 const DevisComponent: React.FC = () => {
 
-  const devis = useSelector((state: TypeState) => state.devis);
-  const valeursDevisList = devis.map(({ id, ...rest }) => Object.values(rest));
+  // const devis = useSelector((state: TypeState) => state.devis);
+  const { devis } = useDevisStore();
+  const valeursDevisList = devis
+    .filter((devis) => devis.description) // Filtrer les devis qui ont une description
+    .map(({ id, ...rest }) => Object.values(rest));
 
   const generatePDF = () => {
+
+    if (devis.length === 0) {
+      alert("Veuillez ajouter un devis");
+    }else{
+
     const doc = new jsPDF();
 
     doc.setFontSize(28);
@@ -38,6 +47,7 @@ const DevisComponent: React.FC = () => {
     });
 
     doc.save("table.pdf");
+  }
   };
 
   return (

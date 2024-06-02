@@ -2,14 +2,14 @@ import React from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import logo from "../assets/logo.png";
-import { useSelector } from "react-redux";
-import { TypeState } from "../types/Interface";
 import { useDevisStore } from "../store/devisStore";
+import { useTableHeadStore } from "../store/tableHeadStore";
 
 const DevisComponent: React.FC = () => {
 
   // const devis = useSelector((state: TypeState) => state.devis);
   const { devis } = useDevisStore();
+  const { head } = useTableHeadStore();
   const valeursDevisList = devis
     .filter((devis) => devis.description) // Filtrer les devis qui ont une description
     .map(({ id, ...rest }) => Object.values(rest));
@@ -41,7 +41,7 @@ const DevisComponent: React.FC = () => {
 
     autoTable(doc, {
       styles: { fillColor: [0, 0, 0] },
-      head: [["Description", "Quantité", "Prix", "Total"]],
+      head: head,
       startY: 80,
       body: valeursDevisList,
     });

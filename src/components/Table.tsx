@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import { useDevisStore } from "../store/devisStore";
+import { useHeaderStore, useTableHeadStore } from "../store/tableHeadStore";
 
 const TableCell = ({
   value,
@@ -28,8 +29,7 @@ const Table = () => {
   const [isWrite, setIsWrite] = useState(false);
 
   const { deleteDevis, setDevis, devis } = useDevisStore();
-
-  console.log(devis, "devisfff");
+  const { setHead } = useTableHeadStore();
 
   const handleDelete = (id: string) => {
     deleteDevis(id);
@@ -45,6 +45,7 @@ const Table = () => {
     if (description === "" || prix === "" || quantite === "" || total === "") {
       alert("Veuillez ajouter des elements");
     }else{
+    // setHead([title, "Quantité", "Prix", "Total"]);  
     setDevis([
       ...devis,
       {

@@ -1,10 +1,11 @@
 import Table from "../components/Table"
+import TableCopy from "../components/TableCopy"
 
 const Home = () => {
   return (
     <section className="w-screen justify-center items-center">
          <article>
-         <Table />
+         <TableCopy />
          </article>
     </section>
   )

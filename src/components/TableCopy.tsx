@@ -28,8 +28,8 @@ const TableCopy = () => {
 
   // useState headDescription, headQuantite, headPrix, headTotal
   const [headDescription, setHeadDescription] = useState("Description");
-  const [headQuantite, setHeadQuantite] = useState("Quantité");
-  const [headPrix, setHeadPrix] = useState("Prix");
+  const [headQuantite, setHeadQuantite] = useState("Quantity");
+  const [headPrix, setHeadPrix] = useState("Price");
   const [headTotal, setHeadTotal] = useState("Total");
 
   // useState isHeadD, isHeadQ, isHeadP, isHeadT
@@ -235,7 +235,7 @@ const TableCopy = () => {
                   />
                 </td>
                 <td className=" px-4 py-2 text-center">
-                  <button className="p-2 text-blue-600 ">Ajouter</button>
+                  <button className="p-2 text-blue-600 ">Add</button>
                 </td>
               </tr>
         </tbody>

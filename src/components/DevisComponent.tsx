@@ -1,13 +1,17 @@
 import React from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import logo from "../assets/logo.png";
 import { useTableRowStore } from "../store/tableRowStore";
 import { useTableHeadStore } from "../store/tableHeadStore";
+import logo from "../assets/logo.png";
 
 const DevisComponent: React.FC = () => {
   const { tableRow } = useTableRowStore();
   const { tableHead } = useTableHeadStore();
+  const date =  new Date();
+  const completeDate = date.toLocaleDateString('fr-FR');
+  date.setMonth(date.getMonth() + 1);
+  const completeDate2 = date.toLocaleDateString('fr-FR');
 
   const valeursDevisList = tableRow
     .filter((devis) => devis.description) // Filtrer les devis qui ont une description
@@ -21,26 +25,29 @@ const DevisComponent: React.FC = () => {
 
       doc.setFontSize(28);
       doc.text("Devis #1234", 125, 25);
-      doc.addImage(logo, "PNG", 10, 15, 50, 15);
+      doc.addImage(logo, "PNG", 10, 15, 15, 15);
 
       doc.setFontSize(12);
       doc.text("Client", 15, 40);
       doc.text("Rita Marnier", 15, 45);
       doc.text("12, rue de la Paix, 75012 Paris", 15, 50);
-      doc.text("06 78 78 78 78", 15, 55);
 
       doc.setFontSize(12);
-      doc.text("Date: 25/01/2030", 125, 40);
-      doc.text("Valable jusqu'au : 25/02/2030", 125, 45);
-      doc.text("N°client: 1234", 125, 50);
+      doc.text("Name Client", 125, 40);
+      doc.text("Émis le " + completeDate, 125, 50);
+      doc.text("Valide jusqu'au " + completeDate2, 125, 55);
+      doc.text("N°client 1234", 125, 60);
 
-      autoTable(doc, { html: "#my-table" });
+      // autoTable(doc, { html: "#my-table" });
 
       autoTable(doc, {
-        styles: { fillColor: [0, 0, 0] },
+        //#FEF7EC,    rgb(254, 247, 236)
+        styles: { fillColor: [254, 247, 236], textColor: [0, 0, 0] },
+        bodyStyles: { fillColor: [255, 255, 255], textColor: [0, 0, 0] }, // Texte noir pour le corps
         head: [Object.values(tableHead)],
         startY: 80,
-        body: valeursDevisList,
+        body: valeursDevisList
+
       });
 
       doc.save("table.pdf");
@@ -54,7 +61,8 @@ const DevisComponent: React.FC = () => {
         type="button"
         onClick={generatePDF}
       >
-        Telecharger devis
+        <svg className="w-3 h-3 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/><path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>
+        Download Estimate
       </button>
     </div>
   );

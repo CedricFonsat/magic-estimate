@@ -1,4 +1,3 @@
-import Table from "../components/Table"
 import TableCopy from "../components/TableCopy"
 
 const Home = () => {

@@ -39,7 +39,7 @@ const TableCopy = () => {
   const [isHeadT, setIsHeadT] = useState(false);
 
   const { tableRow, setTableRow, deleteTableRow } = useTableRowStore();
-  const { tableHead, setTableHead } = useTableHeadStore();
+  const { setTableHead } = useTableHeadStore();
 
   const handleDelete = (id: string) => {
     deleteTableRow(id);
